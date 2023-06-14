@@ -8,10 +8,7 @@
 		<!-- #ifndef H5 -->
 		<view class="detail-btn-view">
 			<view class="download" @click="download"></view>
-			<!-- #ifdef APP-PLUS -->
-			<view v-if="showBtn" class="setting" @click="setting">设为壁纸</view>
-			<!-- #endif -->
-			<view class="collect" @click="collect"></view>
+			<!-- <view class="collect" @click="collect"></view> -->
 		</view>
 		<!-- #endif -->
 	</view>
@@ -32,17 +29,16 @@
 			}
 		},
 		onLoad(e) {
-			// #ifdef APP-PLUS
-			if (plus.os.name === 'Android') {
-				this.showBtn = true;
-			}
-			// #endif
 			this.screenHeight = uni.getSystemInfoSync().windowHeight;
 			this.detailDec = e.data;
 			let data = JSON.parse(decodeURIComponent(e.data));
 			this.imgLength = data.img_num;
 			this.data.push(data.img_src);
-			this.getData(data.id);
+			const template = data.img_src.split('/1.')
+			for (let i = 2;i <= this.imgLength;i++) {
+				this.data.push(`${template[0]}/${i}.${template[1]}`)
+			}
+			// this.getData(data.id);
 			uni.setNavigationBarTitle({
 				title: "1/" + this.imgLength
 			});
@@ -83,7 +79,7 @@
 		},
 		onShareAppMessage() {
 			return {
-				title: '欢迎使用uni-app看图模板',
+				title: '标卉绿植馆',
 				path: '/pages/detail/detail?data=' + this.detailDec,
 				imageUrl: this.data[this.index]
 			}
@@ -166,46 +162,6 @@
 					title: '点击收藏按钮'
 				})
 			},
-			//#ifdef APP-PLUS
-			setting() {
-				uni.showToast({
-					icon: 'none',
-					title: '正在设为壁纸'
-				})
-				setTimeout(() => {
-					var WallpaperManager = plus.android.importClass('android.app.WallpaperManager');
-					var Main = plus.android.runtimeMainActivity();
-					var wallpaperManager = WallpaperManager.getInstance(Main);
-					plus.android.importClass(wallpaperManager);
-					var BitmapFactory = plus.android.importClass('android.graphics.BitmapFactory');
-					uni.downloadFile({
-						url: this.data[this.index],
-						success: (e) => {
-							var filePath = plus.io.convertLocalFileSystemURL(e.tempFilePath);
-							var bitmap = BitmapFactory.decodeFile(filePath);
-							try {
-								wallpaperManager.setBitmap(bitmap);
-								uni.showToast({
-									icon: 'none',
-									title: '壁纸设置成功'
-								})
-							} catch (e) {
-								uni.showToast({
-									icon: 'none',
-									title: '壁纸设置失败'
-								})
-							}
-						},
-						fail: () => {
-							uni.showToast({
-								icon: 'none',
-								title: '壁纸设置失败'
-							})
-						}
-					})
-				}, 100)
-			},
-			//#endif
 			swpierChange(e) {
 				this.index = e.detail.current;
 				uni.setNavigationBarTitle({

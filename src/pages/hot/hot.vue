@@ -1,7 +1,7 @@
 <template>
 	<view class="index">
 		<view class="grid">
-			<view class="grid-c-06" v-for="item in lists" :key="item.guid">
+			<view class="grid-c-06" v-for="item in lists" :key="item.title">
 				<view class="panel" @click="goDetail(item)">
 					<image class="card-img card-list2-img" :src="item.img_src"></image>
 					<text class="card-num-view card-list2-num-view">{{item.img_num}}P</text>
@@ -9,12 +9,13 @@
 						<view class="car-title-view row">
 							<text class="card-title card-list2-title">{{item.title}}</text>
 						</view>
-						<view @click.stop="share(item)" class="card-share-view"></view>
+						<!-- <view @click.stop="share(item)" class="card-share-view"></view> -->
+						<button @click.stop="shareFriend" class="card-share-button" open-type="share"></button>
 					</view>
 				</view>
 			</view>
 		</view>
-		<text class="loadMore">加载中...</text>
+		<!-- <text class="loadMore">加载中...</text> -->
 	</view>
 </template>
 
@@ -23,12 +24,97 @@
 		data() {
 			return {
 				refreshing: false,
-				lists: [],
+				lists: [
+					{
+						'id': "big",
+						'img_num': 12,
+						'img_src': "https://plants-1304544538.cos.ap-guangzhou.myqcloud.com/big/1.jpg",
+						'name': "big",
+						'title': "大绿植",
+					},
+					{
+						'id': "small",
+						'img_num': 5,
+						'img_src': "https://plants-1304544538.cos.ap-guangzhou.myqcloud.com/small/1.jpg",
+						'name': "small",
+						'title': "小绿植",
+					},
+					{
+						'id': "pot",
+						'img_num': 6,
+						'img_src': "https://plants-1304544538.cos.ap-guangzhou.myqcloud.com/pot/1.jpg",
+						'name': "pot",
+						'title': "盆栽花",
+					},
+					{
+						'id': "green",
+						'img_num': 2,
+						'img_src': "https://plants-1304544538.cos.ap-guangzhou.myqcloud.com/green/1.jpg",
+						'name': "green",
+						'title': "绿萝",
+					},
+					{
+						'id': "funny",
+						'img_num': 11,
+						'img_src': "https://plants-1304544538.cos.ap-guangzhou.myqcloud.com/funny/1.webp",
+						'name': "funny",
+						'title': "搞笑",
+					},
+					{
+						'id': "office",
+						'img_num': 10,
+						'img_src': "https://plants-1304544538.cos.ap-guangzhou.myqcloud.com/office/1.webp",
+						'name': "office",
+						'title': "办公",
+					},
+					{
+						'id': "test",
+						'img_num': 13,
+						'img_src': "https://plants-1304544538.cos.ap-guangzhou.myqcloud.com/test/1.webp",
+						'name': "test",
+						'title': "测试",
+					},
+					{
+						'id': "demo",
+						'img_num': 10,
+						'img_src': "https://plants-1304544538.cos.ap-guangzhou.myqcloud.com/demo/1.webp",
+						'name': "demo",
+						'title': "绿色",
+					},
+					// {
+					// 	'id': "tree",
+					// 	'img_num': 14,
+					// 	'img_src': "https://plants-1304544538.cos.ap-guangzhou.myqcloud.com/tree/1.jpg",
+					// 	'name': "tree",
+					// 	'title': "绿植",
+					// },
+					// {
+					// 	'id': "flower",
+					// 	'img_num': 7,
+					// 	'img_src': "https://plants-1304544538.cos.ap-guangzhou.myqcloud.com/basket/1.jpeg",
+					// 	'name': "flower",
+					// 	'title': "花卉",
+					// },
+					// {
+					// 	'id': "tree",
+					// 	'img_num': 8,
+					// 	'img_src': "https://plants-1304544538.cos.ap-guangzhou.myqcloud.com/nba/1.jpeg",
+					// 	'name': "tree",
+					// 	'title': "手机",
+					// },
+					// {
+					// 	'id': "flower",
+					// 	'img_num': 14,
+					// 	'img_src': "https://plants-1304544538.cos.ap-guangzhou.myqcloud.com/flower/1.jpg",
+					// 	'name': "flower",
+					// 	'title': "皮套",
+					// },
+				],
 				fetchPageNum: 1
 			}
 		},
 		onLoad() {
-			this.getData();
+			// this.getData();
 			uni.getProvider({
 				service: 'share',
 				success: (e) => {
@@ -62,14 +148,37 @@
 					console.log('获取登录通道失败', e);
 				}
 			});
+			wx.showShareMenu({
+        withShareTicket:true,
+        //设置下方的Menus菜单，才能够让发送给朋友与分享到朋友圈两个按钮可以点击
+        menus:["shareAppMessage","shareTimeline"]
+    	})
 		},
-		onPullDownRefresh() {
-			console.log('下拉刷新');
-			this.refreshing = true;
-			this.getData();
+		// onPullDownRefresh() {
+		// 	console.log('下拉刷新');
+		// 	this.refreshing = true;
+		// 	this.getData();
+		// },
+		// onReachBottom() {
+		// 	this.getData();
+		// },
+		onShareAppMessage(res) {
+			if (res.from === 'button') {// 来自页面内分享按钮
+				console.log(res.target)
+			}
+			return {
+				title: '精选绿植花卉推荐', //分享的名称
+				path: '/pages/hot/hot',
+				mpId:'wx7b7a9bb81e710524' //此处配置微信小程序的AppId
+			}
 		},
-		onReachBottom() {
-			this.getData();
+		//分享到朋友圈
+		onShareTimeline(res) {
+			return {
+				title: '标卉绿植馆',
+				type: 0,
+				summary: "精选绿植花卉推荐，让你的生活和工作更有趣味",
+			}
 		},
 		methods: {
 			getData() {
@@ -118,9 +227,13 @@
 				return (s4() + s4() + "-" + s4() + "-4" + s4().substr(0, 3) + "-" + s4() + "-" + s4() + s4() + s4()).toUpperCase();
 			},
 			goDetail(e) {
+				console.log({ e })
 				uni.navigateTo({
 					url: '../detail/detail?data=' + encodeURIComponent(JSON.stringify(e))
 				})
+			},
+			shareFriend() {
+				console.log('share')
 			},
 			share(e) {
 				if (this.providerList.length === 0) {

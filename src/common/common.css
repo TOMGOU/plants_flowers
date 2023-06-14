@@ -1,9 +1,9 @@
-@font-face {
+/* @font-face {
 	font-family: texticons;
 	font-weight: normal;
 	font-style: normal;
 	src: url('https://at.alicdn.com/t/font_702773_g9f89om4v3j.ttf') format('truetype');
-}
+} */
 
 .index {
 	flex: 1;
@@ -76,6 +76,30 @@
 
 .card-share-view:before {
 	content: '\e62d';
+}
+.card-share-button {
+	justify-content: center;
+	align-items: center;
+	width: 60upx;
+	height: 60upx;
+	line-height: 60upx;
+	color: #FF80AB;
+	margin: 20upx 20upx 20upx;
+	font-size: 30upx;
+	font-family: texticons;
+	border-radius: 0;
+	border: none;
+	background-color: transparent;
+	text-align: right;
+}
+
+.card-share-button:before {
+	text-align: right;
+	content: '\e62d';
+}
+
+.card-share-button::after{
+	border: none;
 }
 
 .car-title-view {
@@ -345,9 +369,9 @@ view.tag,
 }
 
 button {
-	width: 710upx;
+	/* width: 710upx;
 	height: 80upx;
-	line-height: 80upx;
+	line-height: 80upx; */
 	text-align: center;
 	font-size: 38upx;
 }
