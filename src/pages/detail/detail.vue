@@ -176,6 +176,10 @@
 				setTimeout(() => {
 					this.imgShow = false;
 				}, 1000)
+				console.log({
+						current: this.data[index],
+						urls: this.data
+					})
 				setTimeout(() => {
 					uni.previewImage({
 						current: this.data[index],

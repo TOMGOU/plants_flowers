@@ -3,14 +3,14 @@
 			//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 			"path": "pages/new/new",
 			"style": {
-				"navigationBarTitleText": "最新",
+				"navigationBarTitleText": "花卉",
 				"enablePullDownRefresh": true
 			}
 		},
 		{
 			"path": "pages/hot/hot",
 			"style": {
-				"navigationBarTitleText": "最热",
+				"navigationBarTitleText": "绿植",
 				"enablePullDownRefresh": true
 			}
 		},
@@ -37,13 +37,6 @@
 				}
 			}
 		},
-		// {
-		// 	"path": "pages/tag/tag",
-		// 	"style": {
-		// 		"navigationBarTitleText": "分类",
-		// 		"enablePullDownRefresh": false
-		// 	}
-		// },
 		{
 			"path": "pages/list/list",
 			"style": {
@@ -84,13 +77,13 @@
 				"pagePath": "pages/new/new",
 				"iconPath": "static/index-0.png",
 				"selectedIconPath": "static/index-1.png",
-				"text": "最新"
+				"text": "花卉"
 			},
 			{
 				"pagePath": "pages/hot/hot",
 				"iconPath": "static/hot-0.png",
 				"selectedIconPath": "static/hot-1.png",
-				"text": "推荐"
+				"text": "绿植"
 			},
 			// {
 			// 	"pagePath": "pages/tag/tag",

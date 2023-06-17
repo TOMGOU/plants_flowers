@@ -206,6 +206,12 @@
 
 	.source-list {
 		flex-direction: column;
+		font-size: 20rem;
+	}
+
+	.source-cell {
+		height: 60upx;
+		line-height: 60upx;
 	}
 
 	.link {
