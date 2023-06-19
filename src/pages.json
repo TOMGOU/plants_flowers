@@ -1,6 +1,5 @@
 {
 	"pages": [{
-			//pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 			"path": "pages/new/new",
 			"style": {
 				"navigationBarTitleText": "花卉",
@@ -38,28 +37,11 @@
 			}
 		},
 		{
-			"path": "pages/list/list",
-			"style": {
-				"navigationBarTitleText": "专题",
-				"enablePullDownRefresh": true
-			}
-		},
-		{
 			"path": "pages/center/center",
 			"style": {
 				"navigationBarTitleText": "个人中心",
 				"enablePullDownRefresh": false
 			}
-		},
-		{
-			"path": "pages/login/login",
-			"style": {
-				"navigationBarTitleText": "登录"
-			}
-		},
-		{
-			"path": "pages/about/about",
-			"style": {}
 		}
 	],
 	"globalStyle": {
@@ -85,12 +67,6 @@
 				"selectedIconPath": "static/hot-1.png",
 				"text": "绿植"
 			},
-			// {
-			// 	"pagePath": "pages/tag/tag",
-			// 	"iconPath": "static/tag-0.png",
-			// 	"selectedIconPath": "static/tag-1.png",
-			// 	"text": "分类"
-			// },
 			{
 				"pagePath": "pages/center/center",
 				"iconPath": "static/center-0.png",
