@@ -3,7 +3,7 @@
 		<view class="logo" :hover-class="!login ? 'logo-hover' : ''">
 			<image class="logo-img" :src="login ? uerInfo.avatarUrl :avatarUrl"></image>
 			<view class="logo-title">
-				<text class="uer-name">Hi，欢迎来到春风十里绿植花卉馆！</text>
+				<text class="uer-name">Hi，欢迎来到绿植花卉租摆大亨！</text>
 				<!-- <text class="go-login navigat-arrow" v-if="!login">&#xe65e;</text> -->
 			</view>
 		</view>
@@ -14,15 +14,15 @@
 					<view class="source-list">
 						<view class="source-cell">
 							<text space="nbsp">1.电话： </text>
-							<div @click="handleCall" class="link">13510237853</div>
+							<div @click="handleCall" class="link">13040835292</div>
 						</view>
 						<view class="source-cell" >
 							<text space="nbsp">2. </text>
-							<text>微信：D-297997817</text>
+							<text>微信：Tommy-gou</text>
 						</view>
 					</view>
 					<view class="qrcode">
-						<image class="wechat" :show-menu-by-longpress="true" src="/static/Wechat.jpeg"></image>
+						<image class="wechat" :show-menu-by-longpress="true" src="/static/tomgou.jpeg"></image>
 						<text class="tip">（长按识别微信名片）</text>
 					</view>
 				</view>
@@ -37,7 +37,7 @@
 			return {
 				imgShow: false,
 				login: false,
-				avatarUrl: '/static/logo.jpeg',
+				avatarUrl: '/static/hk.jpeg',
 				uerInfo: {}
 			}
 		},
@@ -55,33 +55,21 @@
 			return {
 				title: '不要犹豫，立刻联系我！', //分享的名称
 				path: '/pages/center/center',
-				mpId:'wx7b7a9bb81e710524' //此处配置微信小程序的AppId
+				mpId:'wx23992a2abd8801bb' //此处配置微信小程序的AppId
 			}
 		},
 		//分享到朋友圈
 		onShareTimeline(res) {
 			return {
-				title: '春风十里绿植花卉馆',
+				title: '绿植花卉租摆大亨',
 				type: 0,
 				summary: "如果你不想错过一个美好的机会，那就赶紧联系我吧！",
 			}
 		},
 		methods: {
-			goLogin() {
-				if (!this.login) {
-					uni.navigateTo({
-						url: '/pages/login/login'
-					});
-				}
-			},
-			goAbout() {
-				uni.navigateTo({
-					url: '/pages/about/about'
-				});
-			},
 			handleCall() {
 				uni.makePhoneCall({
-					phoneNumber: '13510237853'
+					phoneNumber: '13040835292'
 				});
 			},
 			preImg() {
@@ -156,6 +144,7 @@
 
 	.title {
 		margin-bottom: 20upx;
+		font-size: 36upx;
 	}
 
 	.source {

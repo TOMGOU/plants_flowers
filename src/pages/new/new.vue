@@ -97,13 +97,13 @@
 			return {
 				title: '精选绿植花卉推荐', //分享的名称
 				path: '/pages/new/new',
-				mpId:'wx7b7a9bb81e710524' //此处配置微信小程序的AppId
+				mpId:'wx23992a2abd8801bb' //此处配置微信小程序的AppId
 			}
 		},
 		//分享到朋友圈
 		onShareTimeline(res) {
 			return {
-				title: '春风十里绿植花卉馆',
+				title: '绿植花卉租摆大亨',
 				type: 0,
 				summary: "头疼？看看这些治愈系绿植花卉，保准药到病除。",
 			}

@@ -47,14 +47,14 @@
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "看图",
-		"navigationBarBackgroundColor": "#FF80AB",
+		"navigationBarBackgroundColor": "#1b7f02",
 		"backgroundColor": "#EFEFEF"
 	},
 	"tabBar": {
 		"color": "#444444",
 		"selectedColor": "#FF80AB",
 		"borderStyle": "black",
-		"backgroundColor": "#ffffff",
+		"backgroundColor": "#FFFFFF",
 		"list": [{
 				"pagePath": "pages/new/new",
 				"iconPath": "static/index-0.png",
