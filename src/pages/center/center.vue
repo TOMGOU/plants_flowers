@@ -9,46 +9,25 @@
 		</view>
 		<view class="about">
 			<view class="content">
-				<!-- <view class="desc">
-					目前处于开发阶段，敬请期待。。。
-				</view> -->
 				<view class="source">
 					<view class="title">联系方式：</view>
 					<view class="source-list">
 						<view class="source-cell">
-							<text space="nbsp">1. </text><text>电话：13510237853</text>
+							<text space="nbsp">1.电话： </text>
+							<div @click="handleCall" class="link">13510237853</div>
 						</view>
-						<view class="source-cell">
+						<view class="source-cell" >
 							<text space="nbsp">2. </text>
 							<text>微信：D-297997817</text>
 						</view>
 					</view>
 					<view class="qrcode">
-						<image src="/static/Wechat.jpeg"></image>
-						<!-- <text class="tip">标卉绿植馆</text> -->
+						<image class="wechat" :show-menu-by-longpress="true" src="/static/Wechat.jpeg"></image>
+						<text class="tip">（长按识别微信名片）</text>
 					</view>
 				</view>
 			</view>
 		</view>
-		<!-- <view class="center-list">
-			<view class="center-list-item border-bottom">
-				<text class="list-icon">&#xe60c;</text>
-				<text class="list-text">收藏图片</text>
-				<text class="navigat-arrow">&#xe65e;</text>
-			</view>
-			<view class="center-list-item">
-				<text class="list-icon">&#xe60d;</text>
-				<text class="list-text">收藏图集</text>
-				<text class="navigat-arrow">&#xe65e;</text>
-			</view>
-		</view>
-		<view class="center-list">
-			<view class="center-list-item border-bottom" @click="goAbout">
-				<text class="list-icon">&#xe603;</text>
-				<text class="list-text">联系方式</text>
-				<text class="navigat-arrow">&#xe65e;</text>
-			</view>
-		</view> -->
 	</view>
 </template>
 
@@ -62,6 +41,31 @@
 				uerInfo: {}
 			}
 		},
+		onLoad() {
+			wx.showShareMenu({
+        withShareTicket:true,
+        //设置下方的Menus菜单，才能够让发送给朋友与分享到朋友圈两个按钮可以点击
+        menus:["shareAppMessage","shareTimeline"]
+    	})
+		},
+		onShareAppMessage(res) {
+			if (res.from === 'button') {// 来自页面内分享按钮
+				console.log(res.target)
+			}
+			return {
+				title: '精选绿植花卉推荐', //分享的名称
+				path: '/pages/hot/hot',
+				mpId:'wx7b7a9bb81e710524' //此处配置微信小程序的AppId
+			}
+		},
+		//分享到朋友圈
+		onShareTimeline(res) {
+			return {
+				title: '标卉绿植馆',
+				type: 0,
+				summary: "精选绿植花卉推荐，让你的生活和工作更有趣味",
+			}
+		},
 		methods: {
 			goLogin() {
 				if (!this.login) {
@@ -73,6 +77,11 @@
 			goAbout() {
 				uni.navigateTo({
 					url: '/pages/about/about'
+				});
+			},
+			handleCall() {
+				uni.makePhoneCall({
+					phoneNumber: '13510237853'
 				});
 			},
 			preImg() {
@@ -95,7 +104,7 @@
 </script>
 
 <style>
-	image {
+	.wechat {
 		width: 360upx;
 		height: 360upx;
 	}
@@ -120,6 +129,7 @@
 
 	.qrcode .tip {
 		margin-top: 20upx;
+		font-size: 30upx;
 	}
 
 	.desc {
