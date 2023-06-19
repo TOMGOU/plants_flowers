@@ -35,7 +35,7 @@
 			this.imgLength = data.img_num;
 			this.data.push(data.img_src);
 			const template = data.img_src.split('/1.')
-			const watermark = '?watermark/1/image/aHR0cHM6Ly9mbG93ZXItMTMwNDU0NDUzOC5jb3MuYXAtZ3Vhbmd6aG91Lm15cWNsb3VkLmNvbS90ZXN0L3dtLmpwZw==/gravity/southeast/dissolve/40/'
+			const watermark = '?watermark/1/image/aHR0cHM6Ly9mbG93ZXItMTMwNDU0NDUzOC5jb3MuYXAtZ3Vhbmd6aG91Lm15cWNsb3VkLmNvbS90ZXN0L3R5LmpwZw==/gravity/southeast/dissolve/40/'
 			for (let i = 2;i <= this.imgLength;i++) {
 				this.data.push(`${template[0]}/${i}.${template[1]}${watermark}`)
 			}
