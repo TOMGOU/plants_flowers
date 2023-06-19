@@ -245,9 +245,9 @@
 		//分享到朋友圈
 		onShareTimeline(res) {
 			return {
-				title: '标卉绿植馆',
+				title: '春风十里绿植花卉馆',
 				type: 0,
-				summary: "精选绿植花卉推荐，让你的生活和工作更有趣味",
+				summary: "头疼？看看这些治愈系绿植花卉，保准药到病除。",
 			}
 		},
 		methods: {

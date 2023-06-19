@@ -53,17 +53,17 @@
 				console.log(res.target)
 			}
 			return {
-				title: '精选绿植花卉推荐', //分享的名称
-				path: '/pages/hot/hot',
+				title: '不要犹豫，立刻联系我！', //分享的名称
+				path: '/pages/center/center',
 				mpId:'wx7b7a9bb81e710524' //此处配置微信小程序的AppId
 			}
 		},
 		//分享到朋友圈
 		onShareTimeline(res) {
 			return {
-				title: '标卉绿植馆',
+				title: '春风十里绿植花卉馆',
 				type: 0,
-				summary: "精选绿植花卉推荐，让你的生活和工作更有趣味",
+				summary: "如果你不想错过一个美好的机会，那就赶紧联系我吧！",
 			}
 		},
 		methods: {

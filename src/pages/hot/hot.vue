@@ -231,9 +231,9 @@
 		//分享到朋友圈
 		onShareTimeline(res) {
 			return {
-				title: '标卉绿植馆',
+				title: '春风十里绿植花卉馆',
 				type: 0,
-				summary: "精选绿植花卉推荐，让你的生活和工作更有趣味",
+				summary: "熬夜加班，需要这些绿植花卉来提神醒脑。",
 			}
 		},
 		methods: {
