@@ -25,8 +25,27 @@
 				imgLength: 0,
 				providerList: [],
 				data: [],
+				owner: process.env.OWNER,
+				names: {
+					biao: '春风十里绿植花卉馆',
+					tang: '绿植花卉租摆大亨',
+					yu: '雨哥园林'
+				},
+				mapids: {
+					biao: 'wx7b7a9bb81e710524',
+					tang: 'wx7b7a9bb81e710524',
+					yu: 'wx6c4c98ac2494e375'
+				},
 				detailDec: ""
 			}
+		},
+		computed: {
+			name() {
+				return this.names[this.owner]
+			},
+			mapid() {
+				return this.mapids[this.owner]
+			},
 		},
 		onLoad(e) {
 			this.screenHeight = uni.getSystemInfoSync().windowHeight;
@@ -35,7 +54,12 @@
 			this.imgLength = data.img_num;
 			this.data.push(data.img_src);
 			const template = data.img_src.split('/1.')
-			const watermark = '?watermark/1/image/aHR0cHM6Ly9mbG93ZXItMTMwNDU0NDUzOC5jb3MuYXAtZ3Vhbmd6aG91Lm15cWNsb3VkLmNvbS90ZXN0L3dtLmpwZw==/gravity/southeast/dissolve/40/'
+			const marks = {
+				biao: 'aHR0cHM6Ly9mbG93ZXItMTMwNDU0NDUzOC5jb3MuYXAtZ3Vhbmd6aG91Lm15cWNsb3VkLmNvbS90ZXN0L3dtLmpwZw==',
+				tang: 'aHR0cHM6Ly9mbG93ZXItMTMwNDU0NDUzOC5jb3MuYXAtZ3Vhbmd6aG91Lm15cWNsb3VkLmNvbS90ZXN0L3R5LmpwZw==',
+				yu: 'aHR0cHM6Ly9mbG93ZXItMTMwNDU0NDUzOC5jb3MuYXAtZ3Vhbmd6aG91Lm15cWNsb3VkLmNvbS90ZXN0L3l1LmpwZWc='
+			}
+			const watermark = `?watermark/1/image/${marks[this.owner]}/gravity/southeast/dissolve/30/`
 			for (let i = 2;i <= this.imgLength;i++) {
 				this.data.push(`${template[0]}/${i}.${template[1]}${watermark}`)
 			}
@@ -80,9 +104,10 @@
 		},
 		onShareAppMessage() {
 			return {
-				title: '标卉绿植馆',
+				title: '绿植们的自拍时刻',
 				path: '/pages/detail/detail?data=' + this.detailDec,
-				imageUrl: this.data[this.index]
+				imageUrl: this.data[this.index],
+				mpId: this.mapid
 			}
 		},
 		onNavigationBarButtonTap(e) {

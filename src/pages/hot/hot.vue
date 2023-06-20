@@ -24,6 +24,17 @@
 		data() {
 			return {
 				refreshing: false,
+				owner: process.env.OWNER,
+				names: {
+					biao: '春风十里绿植花卉馆',
+					tang: '绿植花卉租摆大亨',
+					yu: '雨哥园林'
+				},
+				mapids: {
+					biao: 'wx7b7a9bb81e710524',
+					tang: 'wx7b7a9bb81e710524',
+					yu: 'wx6c4c98ac2494e375'
+				},
 				lists: [
 					{
 						'id': "fcs",
@@ -85,6 +96,14 @@
 				fetchPageNum: 1
 			}
 		},
+		computed: {
+			name() {
+				return this.names[this.owner]
+			},
+			mapid() {
+				return this.mapids[this.owner]
+			},
+		},
 		onLoad() {
 			// this.getData();
 			uni.getProvider({
@@ -133,13 +152,13 @@
 			return {
 				title: '精选绿植花卉推荐', //分享的名称
 				path: '/pages/hot/hot',
-				mpId:'wx7b7a9bb81e710524' //此处配置微信小程序的AppId
+				mpId: this.mapid
 			}
 		},
 		//分享到朋友圈
 		onShareTimeline(res) {
 			return {
-				title: '春风十里绿植花卉馆',
+				title: this.name,
 				type: 0,
 				summary: "熬夜加班，需要这些绿植花卉来提神醒脑。",
 			}

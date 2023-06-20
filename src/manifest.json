@@ -12,15 +12,13 @@
     "versionName" : "1.0.2",
     "versionCode" : 102,
     "compatConfig" : {
-        "MODE" : 2 // 2代表兼容Vue2模式，3代表非兼容Vue2模式
+        "MODE" : 2
     },
     "app-plus" : {
         "usingComponents" : true,
         "compilerVersion" : 3
     },
-    // 5+App特有相关
     "quickapp" : {},
-    // 快应用特有相关
     "mp-weixin" : {
         "setting" : {
             "urlCheck" : false
