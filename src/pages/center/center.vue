@@ -38,10 +38,12 @@
 				imgShow: false,
 				login: false,
 				avatarUrl: '/static/hk.jpeg',
-				uerInfo: {}
+				uerInfo: {},
+				platform: process.env.VUE_APP_PLATFORM
 			}
 		},
 		onLoad() {
+			console.log(process.env.VUE_APP_PLATFORM)
 			wx.showShareMenu({
         withShareTicket:true,
         //设置下方的Menus菜单，才能够让发送给朋友与分享到朋友圈两个按钮可以点击
